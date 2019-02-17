@@ -466,8 +466,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 923455591}
-        m_MethodName: GoChaInfo
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 923455590}
+      - m_Target: {fileID: 0}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
@@ -1281,19 +1281,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951bb962eb853f04aa5677bc35f9ab6e, type: 3}
---- !u!1 &923455590 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1349917779345992, guid: 951bb962eb853f04aa5677bc35f9ab6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 923455589}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &923455591 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114405528371855318, guid: 951bb962eb853f04aa5677bc35f9ab6e,
     type: 3}
   m_PrefabInstance: {fileID: 923455589}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 923455590}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8457ba312213c1140a2d884e09d80af6, type: 3}
@@ -1507,8 +1501,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 923455591}
-        m_MethodName: GoChaInfo
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1715,8 +1709,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 923455591}
-        m_MethodName: GoChaInfo
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2301,8 +2295,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 923455591}
-        m_MethodName: GoChaInfo
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3017,8 +3011,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 923455591}
-        m_MethodName: GoChaInfo
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3354,8 +3348,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 923455591}
-        m_MethodName: GoChaInfo
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -101,14 +101,14 @@ public class Ai : Round_Enemy_List
 
         //침묵 
         if (isAttack && count != 0)
-            StartCoroutine(Attack());
+            StartCoroutine(Co_Attack());
 
     }
     
-    void Attack()
+    void Attack(int percent)
     {
         //skill.Skill_use(0);
-       StartCoroutine(Attack());
+       StartCoroutine(Co_Attack());
     }
     // asset store에서 사용하는 애니메이션 에러를 막아주는 코드.. 없으면 에러 떠서 보기가 싫다 
     void AttackStart()
@@ -231,7 +231,7 @@ public class Ai : Round_Enemy_List
         }
     }
 
-    IEnumerator Attack()
+    IEnumerator Co_Attack()
     {
         float damage = 0;
         if (Vector2.Distance(transform.position, target.position) <= info.AttackRange)
