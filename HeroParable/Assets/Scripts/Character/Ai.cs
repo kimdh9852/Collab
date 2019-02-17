@@ -104,8 +104,8 @@ public class Ai : Round_Enemy_List
             StartCoroutine(Attack());
 
     }
-
-    void Attack(int percentage)
+    
+    void Attack()
     {
         //skill.Skill_use(0);
        StartCoroutine(Attack());
@@ -115,6 +115,7 @@ public class Ai : Round_Enemy_List
     {
 
     }
+
     void StartSkill()
     {
          //StartCoroutine(PassiveSkill());
@@ -132,30 +133,28 @@ public class Ai : Round_Enemy_List
             //float damage = 0;
             if (Vector2.Distance(transform.position, target.position) <= info.AttackRange) //skillRange를 만들면 바꿔주어야함
             {
-                if (info.AttackRange < 15.0f) // 이것도 
+                if (this.gameObject.GetComponent<Info>().skiil2 == 2)
                 {
-                    if (this.gameObject.GetComponent<Info>().skiil2 == 2)
+                    Debug.Log(this.gameObject.name + "이 '사기진작' 사용하였습니다.");
+                    this.gameObject.GetComponent<Info>().skiil2 = 0;
+                    time1 = 0;
+                }
+                if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
+                {
+                    if (target.gameObject.activeSelf)
                     {
-                        Debug.Log(this.gameObject.name + "이 '사기진작' 사용하였습니다.");
-                        this.gameObject.GetComponent<Info>().skiil2 = 0;
-                        time1 = 0;
+                        refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
+                        refEnemyList.Remove(target.gameObject);
+                        target.GetComponent<Ai>().Die();
                     }
-                    if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
-                    {
-                        if (target.gameObject.activeSelf)
-                        {
-                            refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
-                            refEnemyList.Remove(target.gameObject);
-                            target.gameObject.SetActive(false);
-                        }
-                        target = null;
-                        SetDanger();
-                        Settarget();
-                        if (target != null)
-                            vector = (target.position - transform.position).normalized;
-                    }
+                    target = null;
+                    SetDanger();
+                    Settarget();
+                    if (target != null)
+                        vector = (target.position - transform.position).normalized;
                 }
             }
+
         }
 
         buttoncheck = 0;
@@ -166,6 +165,19 @@ public class Ai : Round_Enemy_List
             //Debug.Log(this.gameObject.name + "10초가 지났습니다");
         }
     } // 아직은... 
+
+    public void Die()
+    {
+        animator.SetTrigger("Dead");
+        StartCoroutine("Co_Die");
+    }
+
+    IEnumerator Co_Die()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
+    }
+
     IEnumerator PassiveSkill() // 데미지 들어가는거는 아직 안넣었음! 
     {
         float damage = 0;
@@ -176,10 +188,8 @@ public class Ai : Round_Enemy_List
             target = info.transform;
         }
 
-        if (Vector2.Distance(transform.position, target.position) <= info.AttackRange)
+        if (Vector2.Distance(transform.position, target.position) <= info.AttackRange )
         {
-            if (info.AttackRange < 5.0f)
-            {
                 isAttack = false;
                 animator.SetTrigger("Attack");
                 if (this.gameObject.GetComponent<Info>().skiil1 == 1)
@@ -206,7 +216,7 @@ public class Ai : Round_Enemy_List
                     {
                         refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
                         refEnemyList.Remove(target.gameObject);
-                        target.gameObject.SetActive(false);
+                        target.GetComponent<Ai>().Die();
                     }
                     //enemyDanger.RemoveAt(location);
                     target = null;
@@ -217,44 +227,15 @@ public class Ai : Round_Enemy_List
                 }
 
                 yield return new WaitForSeconds(7f);
-                isAttack = true;
-            }
-            else
-            {
-                isAttack = false;
-                animator.SetTrigger("Attack");
-
-                GameObject arrowPrefeb = Instantiate(arrow, transform.position, Quaternion.Euler(0f, 0f, -90f));
-                arrowPrefeb.transform.parent = gameObject.transform;
-
-                if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
-                {
-                    //enemyDanger.Clear();
-                    //enemyList.Clear();
-                    if (target.gameObject.activeSelf)
-                    {
-                        refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
-                        refEnemyList.Remove(target.gameObject);
-                        target.gameObject.SetActive(false);
-                    }
-                    //enemyDanger.RemoveAt(location);
-                    target = null;
-                    SetDanger();
-                    Settarget();
-                }
-
-                yield return new WaitForSeconds(7f);
-                isAttack = true;
-            }
+                isAttack = true;          
         }
     }
+
     IEnumerator Attack()
     {
         float damage = 0;
         if (Vector2.Distance(transform.position, target.position) <= info.AttackRange)
         {
-            if (info.AttackRange < 5.0f)
-            {
                 isAttack = false;
                 animator.SetTrigger("Attack");
 
@@ -285,8 +266,8 @@ public class Ai : Round_Enemy_List
                     {
                         refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
                         refEnemyList.Remove(target.gameObject);
-                        target.gameObject.SetActive(false);
-                    }
+                    target.GetComponent<Ai>().Die();
+                }
                     //enemyDanger.RemoveAt(location);
                     target = null;
                     SetDanger();
@@ -296,35 +277,7 @@ public class Ai : Round_Enemy_List
                 }
 
                 yield return new WaitForSeconds(info.AttackSpeed);
-                isAttack = true;
-            }
-            else
-            {
-                isAttack = false;
-                animator.SetTrigger("Attack");
-
-                GameObject arrowPrefeb = Instantiate(arrow, transform.position, Quaternion.Euler(0f, 0f, -90f));
-                arrowPrefeb.transform.parent = gameObject.transform;
-
-                if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
-                {
-                    //enemyDanger.Clear();
-                    //enemyList.Clear();
-                    if (target.gameObject.activeSelf)
-                    {
-                        refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
-                        refEnemyList.Remove(target.gameObject);
-                        target.gameObject.SetActive(false);
-                    }
-                    //enemyDanger.RemoveAt(location);
-                    target = null;
-                    SetDanger();
-                    Settarget();
-                }
-
-                yield return new WaitForSeconds(info.AttackSpeed);
-                isAttack = true;
-            }
+                isAttack = true;           
         }
     }
 
@@ -732,10 +685,12 @@ public class Ai : Round_Enemy_List
         yield return new WaitForSeconds(5f);
         isAttack = true;
     }
+
     public void Recovery(float time)
     {
         StartCoroutine(Cor_recovery(time));
     }
+
     IEnumerator Cor_recovery(float time)
     {
         yield return new WaitForSeconds(time);
@@ -745,6 +700,7 @@ public class Ai : Round_Enemy_List
             _state[i] = false;
 
     }
+
     public void Move()
     {
         if (target == null)

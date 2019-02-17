@@ -136,5 +136,5 @@ public class Info : MonoBehaviour
             Destroy(NewHPP, 1.0f);
         }
     }
-
+    
 }
