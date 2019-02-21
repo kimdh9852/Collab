@@ -5,6 +5,7 @@ using UnityEngine;
 public class Round_Enemy_List : MonoBehaviour {
 
     public GameObject[] refEnemy;
+
     public List<GameObject> refEnemyList = new List<GameObject>();
     public List<int> refEnemyDanger = new List<int>();
 

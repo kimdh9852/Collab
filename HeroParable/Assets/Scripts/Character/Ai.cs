@@ -236,48 +236,48 @@ public class Ai : Round_Enemy_List
         float damage = 0;
         if (Vector2.Distance(transform.position, target.position) <= info.AttackRange)
         {
-                isAttack = false;
-                animator.SetTrigger("Attack");
+            isAttack = false;
+            animator.SetTrigger("Attack");
 
-                if (Random.Range(1, 1000) > target.GetComponent<Info>().Evade * 10)
+            if (Random.Range(1, 1000) > target.GetComponent<Info>().Evade * 10)
+            {
+                if (Random.Range(1, 1000) < info.Critcal * 10)
                 {
-                    if (Random.Range(1, 1000) < info.Critcal * 10)
-                    {
 
-                        damage = (int)(info.Power * info.CD * Random.Range(0.98f, 1.02f)) - target.GetComponent<Info>().PhyArmor;
-                        Debug.Log("Critical!!");
-                    }
-                    else
-                    {
-                        damage = (int)(info.Power * Random.Range(0.98f, 1.02f)) - target.GetComponent<Info>().PhyArmor;
-                    }
-                    target.gameObject.GetComponent<Info>().Hp -= damage;
-                    //Debug.Log(this.gameObject.name + " 이 공격하여 " + target.gameObject.name + "의 피가  " + target.gameObject.GetComponent<Info>().Hp);
+                    damage = (int)(info.Power * info.CD * Random.Range(0.98f, 1.02f)) - target.GetComponent<Info>().PhyArmor;
+                    Debug.Log("Critical!!");
                 }
                 else
                 {
-                    Debug.Log("적 회피!");
+                    damage = (int)(info.Power * Random.Range(0.98f, 1.02f)) - target.GetComponent<Info>().PhyArmor;
                 }
-                if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
-                {
-                    //enemyDanger.Clear();
-                    //enemyList.Clear();
-                    if (target.gameObject.activeSelf)
-                    {
-                        refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
-                        refEnemyList.Remove(target.gameObject);
-                    target.GetComponent<Ai>().Die();
-                }
-                    //enemyDanger.RemoveAt(location);
-                    target = null;
-                    SetDanger();
-                    Settarget();
-                    if (target != null)
-                        vector = (target.position - transform.position).normalized;
-                }
+                target.gameObject.GetComponent<Info>().Hp -= damage;
+                //Debug.Log(this.gameObject.name + " 이 공격하여 " + target.gameObject.name + "의 피가  " + target.gameObject.GetComponent<Info>().Hp);
+            }
+            else
+            {
+                Debug.Log("적 회피!");
+            }
+            if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
+            {
+                //enemyDanger.Clear();
+                //enemyList.Clear();
 
-                yield return new WaitForSeconds(info.AttackSpeed);
-                isAttack = true;           
+                refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
+                refEnemyList.Remove(target.gameObject);
+                target.GetComponent<Ai>().Die();
+
+                //enemyDanger.RemoveAt(location);
+                target = null;
+                SetDanger();
+                Settarget();
+                if (target != null)
+                    vector = (target.position - transform.position).normalized;
+            }
+
+            yield return new WaitForSeconds(info.AttackSpeed);
+            isAttack = true;
+
         }
     }
 
