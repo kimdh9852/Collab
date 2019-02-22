@@ -15,19 +15,25 @@ public class TalkScripts : MonoBehaviour
 
     public void Awake()
     {
+        Time.timeScale = 0.0f;
         EndScripts = false;
         NowScripts = 0;
 
-        Scripts.Add("0");
-        Scripts.Add("1");
-        Scripts.Add("2");
-        Scripts.Add("3");
+        Scripts.Add("누구냐");
+        Scripts.Add("누구냐고 묻는다면 대답해주는게 인지상정");
+        Scripts.Add("나는 로사");
+        Scripts.Add("나는 로이");
+        Scripts.Add("나는 냐용이다아옹");
+
+        ScriptText.text = Scripts[0];
+
     }
 
     public void Skip()
     {
         ScriptPanel.SetActive(false);
         EndScripts = true;
+        Time.timeScale = 1.0f;
     }
 
     public void NextScripts()
@@ -35,6 +41,7 @@ public class TalkScripts : MonoBehaviour
         if (NowScripts == Scripts.Count - 1)
         {
             Skip();
+            return;
         }
 
         NowScripts++;

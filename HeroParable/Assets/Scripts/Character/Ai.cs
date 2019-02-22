@@ -23,14 +23,12 @@ public class Ai : Round_Enemy_List
 
     public Vector3 vector;
     public Animator animator;
-
+    public bool EndScript;
     public bool isAttack = true;
     string Enemy_tag;
 
     public GameObject arrow;
     public SpriteRenderer spriteRenderer;
-
-    public int delay = 0; //임시 코드 추후 삭제예정
 
     public enum State { Nomal, Stun, Silence, Taunt, Fire, NumberofType };
     public ArrayList _state = new ArrayList();
@@ -40,9 +38,10 @@ public class Ai : Round_Enemy_List
     public bool skilluse = false;
 
     void Start()
-    { 
+    {
         //skill = new Unit_Skill();
         //skill.Set_Skill_Stat();
+
         for (int i = 0; i < (int)State.NumberofType; i++)
         {
             if (i == 0)
@@ -65,12 +64,17 @@ public class Ai : Round_Enemy_List
         SetDanger();
         Settarget();
         vector = (target.position - transform.position).normalized;
-        delay = 0;
     }
 
     void Update()
     {
-        delay++;
+        EndScript = GameObject.Find("ScriptsManger").GetComponent<TalkScripts>().EndScripts;
+
+        if (!EndScript)
+        {
+            return;
+        }
+
         setFlipX();
 
         //쿨타임 시간 체크
@@ -78,7 +82,7 @@ public class Ai : Round_Enemy_List
         time += Time.deltaTime;
         ActiveSkill();
 
-        if (delay > 250 && count >= 1)
+        if (count >= 1)
             if (!(bool)_state[(int)State.Stun])
                 Move();
 

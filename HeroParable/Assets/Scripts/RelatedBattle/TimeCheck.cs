@@ -8,8 +8,9 @@ public class TimeCheck : MonoBehaviour {
     public Text timer;
 
     public int minute;
-    public int second;
+    public float second;
     public static float second_13;
+    public bool EndScript;
 
     void Awake () {
 
@@ -20,13 +21,23 @@ public class TimeCheck : MonoBehaviour {
 	}
 	
 	void Update () {
-        
-        second = Mathf.RoundToInt(Time.timeSinceLevelLoad);
+
+        EndScript = GameObject.Find("ScriptsManger").GetComponent<TalkScripts>().EndScripts;
+
+        if (!EndScript)
+        {
+            return;
+        }
+
+        //second = Mathf.RoundToInt(Time.timeSinceLevelLoad);
+        second += Time.deltaTime;
+
         if (second == 60)
         {
             minute++;
             second = 0;
         }
+
         //1_3stage 전용 타이머
         if(ButtonManager.StageNumber ==1.3f)
         {
@@ -35,7 +46,7 @@ public class TimeCheck : MonoBehaviour {
         }
         else
         {
-            timer.text = "Time : " + minute + ":" + second;
+            timer.text = "Time : " + minute + ":" + (int)second;
         }
 	}
 }
