@@ -63,6 +63,9 @@ public class RelatedMarket : MonoBehaviour {
     public void RandomBox(int item_Money)
     {
         int rand;
+
+        Money -= item_Money;
+
         for (int i = 0; i < 10; i++)
         {
             rand = Random.Range(0, 10000);
