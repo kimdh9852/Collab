@@ -29,8 +29,8 @@ public class RelatedMarket : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Money_Text.text = "Gold = " + Money.ToString();
-        Cash_Text.text = "Ludens = " + Cash.ToString();
+        Money_Text.text =  Money.ToString();
+        Cash_Text.text = Cash.ToString();
     }
 
     public void BuyingMoney(int item_Money)
@@ -63,6 +63,12 @@ public class RelatedMarket : MonoBehaviour {
     public void RandomBox(int item_Money)
     {
         int rand;
+
+        if (Money < item_Money)
+        {
+            FailBuy.SetActive(true);
+            return;
+        }
 
         Money -= item_Money;
 

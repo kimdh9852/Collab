@@ -15,11 +15,10 @@ public class Ai : Round_Enemy_List
     public int max;
 
     public float time = -5f; // 5초 후 전투가 시작되기 때문에 -5초부터 센다 
-    public float time1 = -7f; 
+    public float time1 = -7f;
 
     //int location;
     //public Unit_Skill skill;
-    public Units_Skill Skill_Manager;
 
     public Vector3 vector;
     public Animator animator;
@@ -30,12 +29,14 @@ public class Ai : Round_Enemy_List
     public GameObject arrow;
     public SpriteRenderer spriteRenderer;
 
-    public enum State { Nomal, Stun, Silence, Taunt, Fire, NumberofType };
+    public enum State { Nomal, Stun, Silence, Taunt, Poison, NumberofType };
     public ArrayList _state = new ArrayList();
 
     public static int buttoncheck = 0;
     //skill 과 attack 동시에 일어나는 경우? 허용할지 말지..
     public bool skilluse = false;
+
+    public Skill skill;
 
     void Start()
     {
@@ -56,7 +57,7 @@ public class Ai : Round_Enemy_List
             Enemy_tag = "Enemy";
         else
             Enemy_tag = "Player";
-        
+
         refEnemy = GameObject.FindGameObjectsWithTag(Enemy_tag);
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         count = refEnemy.Length;
@@ -99,20 +100,20 @@ public class Ai : Round_Enemy_List
             return;
         }
 
-        if ((bool)_state[(int)State.Fire])
-            if (isAttack)
-                StartCoroutine(fire());
+        //if ((bool)_state[(int)State.Fire])
+        //    if (isAttack)
+        //        StartCoroutine(fire());
 
         //침묵 
         if (isAttack && count != 0)
             StartCoroutine(Co_Attack());
 
     }
-    
+
     void Attack(int percent)
     {
         //skill.Skill_use(0);
-       StartCoroutine(Co_Attack());
+        StartCoroutine(Co_Attack());
     }
     // asset store에서 사용하는 애니메이션 에러를 막아주는 코드.. 없으면 에러 떠서 보기가 싫다 
     void AttackStart()
@@ -122,7 +123,7 @@ public class Ai : Round_Enemy_List
 
     void StartSkill()
     {
-         //StartCoroutine(PassiveSkill());
+        //StartCoroutine(PassiveSkill());
     }
 
     //액티브 스킬 같은 경우는 미리 올려놓은 스킬을 사용해야 함으로 
@@ -185,53 +186,48 @@ public class Ai : Round_Enemy_List
     IEnumerator PassiveSkill() // 데미지 들어가는거는 아직 안넣었음! 
     {
         float damage = 0;
-        // 코루틴 두개 돌리니까 attack으로 죽이는 경우 target이 null이되기 때문에 NullReferenceExcpetion이 떠서 임시로 막아놓음.
-        // 해법좀.. 부탁...ㅠ
-        if (target == null||transform == null)
-        {
-            target = info.transform;
-        }
 
-        if (Vector2.Distance(transform.position, target.position) <= info.AttackRange )
+
+        if (Vector2.Distance(transform.position, target.position) <= info.AttackRange)
         {
-                isAttack = false;
-                animator.SetTrigger("Attack");
-                if (this.gameObject.GetComponent<Info>().skiil1 == 1)
-                {
-                    damage = (int)(info.skiil1 * info.Power * Random.Range(0.98f, 1.02f)) - target.GetComponent<Info>().PhyArmor;
-                    //Debug.Log(this.gameObject.name + "이 '일격' 사용하였습니다.");
-                    this.gameObject.GetComponent<Info>().skiil1 = 0;
-                    target.gameObject.GetComponent<Info>().Hp -= damage;
-                    //Debug.Log(this.gameObject.name + " 이 공격하여 " + target.gameObject.name + "의 피가  " + target.gameObject.GetComponent<Info>().Hp);
-                }
-                if (time >= 7f) // SkillCooldown 쓴직후 예를들어 32초에 사용하면 36초에 다시 사용가능함.. 2,3,4,5,6 의 5초방식
-                {
-                    this.gameObject.GetComponent<Info>().skiil1 = 1;
-                    //Debug.Log(this.gameObject.name + "10초가 지났습니다");
-                    time = 0;
-                }
+            isAttack = false;
+            animator.SetTrigger("Attack");
+            if (this.gameObject.GetComponent<Info>().skiil1 == 1)
+            {
+                damage = (int)(info.skiil1 * info.Power * Random.Range(0.98f, 1.02f)) - target.GetComponent<Info>().PhyArmor;
+                //Debug.Log(this.gameObject.name + "이 '일격' 사용하였습니다.");
+                this.gameObject.GetComponent<Info>().skiil1 = 0;
                 target.gameObject.GetComponent<Info>().Hp -= damage;
                 //Debug.Log(this.gameObject.name + " 이 공격하여 " + target.gameObject.name + "의 피가  " + target.gameObject.GetComponent<Info>().Hp);
-                if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
+            }
+            if (time >= 7f) // SkillCooldown 쓴직후 예를들어 32초에 사용하면 36초에 다시 사용가능함.. 2,3,4,5,6 의 5초방식
+            {
+                this.gameObject.GetComponent<Info>().skiil1 = 1;
+                //Debug.Log(this.gameObject.name + "10초가 지났습니다");
+                time = 0;
+            }
+            target.gameObject.GetComponent<Info>().Hp -= damage;
+            //Debug.Log(this.gameObject.name + " 이 공격하여 " + target.gameObject.name + "의 피가  " + target.gameObject.GetComponent<Info>().Hp);
+            if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
+            {
+                //enemyDanger.Clear();
+                //enemyList.Clear();
+                if (target.gameObject.activeSelf)
                 {
-                    //enemyDanger.Clear();
-                    //enemyList.Clear();
-                    if (target.gameObject.activeSelf)
-                    {
-                        refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
-                        refEnemyList.Remove(target.gameObject);
-                        target.GetComponent<Ai>().Die();
-                    }
-                    //enemyDanger.RemoveAt(location);
-                    target = null;
-                    SetDanger();
-                    Settarget();
-                    if (target != null)
-                        vector = (target.position - transform.position).normalized;
+                    refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
+                    refEnemyList.Remove(target.gameObject);
+                    target.GetComponent<Ai>().Die();
                 }
+                //enemyDanger.RemoveAt(location);
+                target = null;
+                SetDanger();
+                Settarget();
+                if (target != null)
+                    vector = (target.position - transform.position).normalized;
+            }
 
-                yield return new WaitForSeconds(7f);
-                isAttack = true;          
+            yield return new WaitForSeconds(7f);
+            isAttack = true;
         }
     }
 
@@ -245,7 +241,7 @@ public class Ai : Round_Enemy_List
 
             if (Random.Range(1, 1000) > target.GetComponent<Info>().Evade * 10)
             {
-                if (Random.Range(1, 1000) < info.Critcal * 10)
+                if (Random.Range(1, 1000) < (info.Critcal * 10))
                 {
 
                     damage = (int)(info.Power * info.CD * Random.Range(0.98f, 1.02f)) - target.GetComponent<Info>().PhyArmor;
@@ -256,7 +252,6 @@ public class Ai : Round_Enemy_List
                     damage = (int)(info.Power * Random.Range(0.98f, 1.02f)) - target.GetComponent<Info>().PhyArmor;
                 }
                 target.gameObject.GetComponent<Info>().Hp -= damage;
-                //Debug.Log(this.gameObject.name + " 이 공격하여 " + target.gameObject.name + "의 피가  " + target.gameObject.GetComponent<Info>().Hp);
             }
             else
             {
@@ -264,14 +259,12 @@ public class Ai : Round_Enemy_List
             }
             if (target.gameObject.GetComponent<Info>().Hp <= 0 || !target.gameObject.activeSelf)
             {
-                //enemyDanger.Clear();
-                //enemyList.Clear();
 
                 refEnemyDanger.Remove(refEnemyDanger[refEnemyList.IndexOf(target.gameObject)]);
                 refEnemyList.Remove(target.gameObject);
-                target.GetComponent<Ai>().Die();
+                //target.GetComponent<Ai>().Die();
+                target.gameObject.SetActive(false);
 
-                //enemyDanger.RemoveAt(location);
                 target = null;
                 SetDanger();
                 Settarget();
@@ -681,14 +674,6 @@ public class Ai : Round_Enemy_List
         yield return new WaitForSeconds(5f);
     }*/
 
-    IEnumerator fire()
-    {
-        if ((bool)_state[(int)State.Fire])
-            info.Hp -= 100;
-        isAttack = false;
-        yield return new WaitForSeconds(5f);
-        isAttack = true;
-    }
 
     public void Recovery(float time)
     {
@@ -715,7 +700,7 @@ public class Ai : Round_Enemy_List
         vector = (target.position - transform.position).normalized;
 
         if (Vector2.Distance(transform.position, target.position) > info.AttackRange)
-            transform.position += new Vector3(vector.x / Mathf.Abs(vector.x), vector.y / Mathf.Abs(vector.x), -vector.y / Mathf.Abs(vector.x) * 10) * 3f *info.MoveSpeed * Time.deltaTime;
+            transform.position += new Vector3(vector.x / Mathf.Abs(vector.x), vector.y / Mathf.Abs(vector.x), -vector.y / Mathf.Abs(vector.x) * 10) * 3f * info.MoveSpeed * Time.deltaTime;
     }
 
     public int Selectmin(int mindistance, int newdistance)
@@ -817,7 +802,7 @@ public class Ai : Round_Enemy_List
         {
             refEnemyDanger[i] -= (int)(Vector3.Distance(transform.position, _enemy.transform.position));
             i++;
-        } 
+        }
     }
 
     public void setFlipX()

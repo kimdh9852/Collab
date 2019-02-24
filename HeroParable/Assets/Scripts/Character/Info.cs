@@ -19,11 +19,11 @@ public class Info : MonoBehaviour
     public float skiil4;
 
     //캐릭터 인포
-    public int Lv ;
+    public int Lv;
     public float Hp;
     public float NowHp;
     public float MaxHp;
-    public int Power;
+    public float Power;
     public int Danger;
     public float PhyArmor;
     public float MagicalArmor;
@@ -34,6 +34,18 @@ public class Info : MonoBehaviour
     public float Evade;
     public float CD;
     public int exp;
+
+    //2019.02.24 추가 
+    //대미지감소 피격감소
+    public float Damage_reduction;
+    //타격 수
+    public int hit;
+    //명중률
+    public float Accuracy;
+    //액티브(0)와 패시브(1)
+    public int Attack_type;
+
+
     //Hp bar 관련
     public SpriteRenderer sp;
     public Image hpImg;
@@ -55,7 +67,7 @@ public class Info : MonoBehaviour
             Lv = int.Parse(getData["Level"].ToString());
             GetInfoData(Lv);
             Debug.Log("레벨 " + Lv + "의 " + this.name + "가 소환됨");
-        }        
+        }
     }
 
     public void GetInfoData(int lv)
@@ -136,5 +148,5 @@ public class Info : MonoBehaviour
             Destroy(NewHPP, 1.0f);
         }
     }
-    
+
 }
