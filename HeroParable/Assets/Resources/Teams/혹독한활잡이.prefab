@@ -353,14 +353,15 @@ MonoBehaviour:
   max: 0
   time: -5
   time1: -7
-  Skill_Manager: {fileID: 0}
   vector: {x: 0, y: 0, z: 0}
   animator: {fileID: 0}
+  EndScript: 0
   isAttack: 1
-  arrow: {fileID: 0}
+  DeadMotion: {fileID: 7585929292586035680, guid: 330ee8fbeb2acf740842ffda3db206eb,
+    type: 3}
   spriteRenderer: {fileID: 0}
-  delay: 0
   skilluse: 0
+  skill: {fileID: 0}
 --- !u!114 &114288702618750632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +396,10 @@ MonoBehaviour:
   Evade: 0
   CD: 0
   exp: 0
+  Damage_reduction: 0
+  hit: 0
+  Accuracy: 0
+  Attack_type: 0
   sp: {fileID: 0}
   hpImg: {fileID: 0}
   HPParticle: {fileID: 100000, guid: 57ff52a6b9d134c9689be872547ab590, type: 3}

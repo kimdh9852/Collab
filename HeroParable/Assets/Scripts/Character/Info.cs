@@ -34,6 +34,7 @@ public class Info : MonoBehaviour
     public float Evade;
     public float CD;
     public int exp;
+    public int ac_exp;
 
     //2019.02.24 추가 
     //대미지감소 피격감소
@@ -92,7 +93,7 @@ public class Info : MonoBehaviour
         Evade = float.Parse(getData["Evade"][Lv - 1].ToString());
         CD = float.Parse(getData["CD"][Lv - 1].ToString());
         exp = int.Parse(getData["Exp"].ToString());
-
+        //ac_exp = int.Parse(getData["ac_Exp"].ToString());
         MaxHp = NowHp = Hp;
         sp = GetComponentInChildren<SpriteRenderer>();
         hpImg = GetComponentInChildren<Image>();

@@ -26,7 +26,7 @@ public class Ai : Round_Enemy_List
     public bool isAttack = true;
     string Enemy_tag;
 
-    public GameObject arrow;
+    public GameObject DeadMotion;
     public SpriteRenderer spriteRenderer;
 
     public enum State { Nomal, Stun, Silence, Taunt, Poison, NumberofType };
@@ -43,6 +43,9 @@ public class Ai : Round_Enemy_List
         //skill = new Unit_Skill();
         //skill.Set_Skill_Stat();
 
+        info = GetComponent<Info>();
+        animator = GetComponentInChildren<Animator>();
+
         for (int i = 0; i < (int)State.NumberofType; i++)
         {
             if (i == 0)
@@ -50,8 +53,6 @@ public class Ai : Round_Enemy_List
             else
                 _state.Add(false);
         }
-        info = GetComponent<Info>();
-        animator = GetComponentInChildren<Animator>();
 
         if (this.CompareTag("Player"))
             Enemy_tag = "Enemy";
@@ -819,4 +820,13 @@ public class Ai : Round_Enemy_List
         }
     }
 
+    private void OnDisable()
+    {
+        if (DeadMotion == null)
+            return;
+        
+        GameObject dm =Instantiate(DeadMotion, new Vector2(transform.position.x,transform.position.y),
+            transform.rotation);
+        Destroy(dm, 1.5f); 
+    }
 }

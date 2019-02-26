@@ -123,53 +123,6 @@ MonoBehaviour:
   displayText: 0
   barText: {fileID: 0}
   additionalText: 
---- !u!1 &1297348256332728
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4001121940208888}
-  - component: {fileID: 58927206799327302}
-  m_Layer: 0
-  m_Name: KnightAttack
-  m_TagString: Weapon
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4001121940208888
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297348256332728}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.467, y: 0.096000016, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4808055188449828}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58927206799327302
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297348256332728}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &1500034055236334
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,14 +348,19 @@ MonoBehaviour:
   count: 0
   target: {fileID: 0}
   info: {fileID: 0}
+  SkillUse: 0
   min: 0
   max: 0
+  time: -5
+  time1: -7
   vector: {x: 0, y: 0, z: 0}
   animator: {fileID: 0}
+  EndScript: 0
   isAttack: 1
   arrow: {fileID: 0}
   spriteRenderer: {fileID: 0}
-  delay: 0
+  skilluse: 0
+  skill: {fileID: 0}
 --- !u!114 &114288702618750632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,11 +375,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   elemental: 0
-  NormalAttack: 0
-  Skiil1: 0
-  Skiil2: 0
-  Skiil3: 0
-  Skiil4: 0
+  normalattack: 0
+  skiil1: 0
+  skiil2: 0
+  skiil3: 0
+  skiil4: 0
   Lv: 0
   Hp: 0
   NowHp: 0
@@ -432,10 +390,15 @@ MonoBehaviour:
   MagicalArmor: 0
   AttackRange: 0
   AttackSpeed: 0
+  MoveSpeed: 0
   Critcal: 0
   Evade: 0
   CD: 0
   exp: 0
+  Damage_reduction: 0
+  hit: 0
+  Accuracy: 0
+  Attack_type: 0
   sp: {fileID: 0}
   hpImg: {fileID: 0}
   HPParticle: {fileID: 100000, guid: 57ff52a6b9d134c9689be872547ab590, type: 3}
@@ -452,7 +415,6 @@ GameObject:
   - component: {fileID: 4808055188449828}
   - component: {fileID: 212671204287087218}
   - component: {fileID: 95509316779278890}
-  - component: {fileID: 60983140028418890}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -470,8 +432,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4001121940208888}
+  m_Children: []
   m_Father: {fileID: 4833552402635948}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -542,59 +503,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!60 &60983140028418890
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1643607385867940}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 2.56}
-    newSize: {x: 5.12, y: 2.56}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.39, y: -0.77}
-      - {x: 0.35, y: -0.66999996}
-      - {x: 0.45, y: -0.59}
-      - {x: 0.5, y: -0.48}
-      - {x: 0.5, y: -0.14}
-      - {x: 0.45999998, y: -0.02}
-      - {x: 0.5, y: 0.19}
-      - {x: 0.42, y: 0.26}
-      - {x: 0.34, y: 0.26999998}
-      - {x: 0.28, y: 0.26999998}
-      - {x: 0.22999999, y: 0.17}
-      - {x: 0.16, y: 0.16}
-      - {x: -0.12, y: 0.25}
-      - {x: -0.13, y: 0.13}
-      - {x: -0.25, y: 0.12}
-      - {x: -0.53, y: -0.01}
-      - {x: -0.42, y: -0.19999999}
-      - {x: -0.55, y: -0.37}
-      - {x: -0.55, y: -0.42}
-      - {x: -0.45, y: -0.52}
-      - {x: -0.35, y: -0.61}
-      - {x: -0.26999998, y: -0.65999997}
-      - {x: -0.39999998, y: -0.89}
-      - {x: -0.45, y: -1.01}
-      - {x: -0.38, y: -1.22}
-      - {x: -0.26999998, y: -1.1999999}
-      - {x: -0.11, y: -1.24}
-      - {x: 0.26999998, y: -1.24}
-      - {x: 0.31, y: -1.1899999}
-      - {x: 0.29, y: -1.04}
-      - {x: 0.42, y: -0.97999996}

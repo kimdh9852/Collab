@@ -50,6 +50,7 @@ public class Spawn_Enemy_Unit : MonoBehaviour {
                 }
             }
         }
+
         //for (int i = 0; i < GameManager.instance.EnemyUnit.Count; i++)
         //{
         //    for (int a = 0; a < GameManager.instance.EnemyCount[i]; a++)

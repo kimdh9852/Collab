@@ -111,6 +111,14 @@ public class GameManager : MonoBehaviour
                     {
                         EndGame.GetChild(0).GetComponent<Text>().text = "Victory!";
                         clear = true;
+
+                        for (int j = 0; j < 2; j++)
+                        {
+                            for (int i = 0; i < chaList[j].Count; i++)
+                            {
+                                GameObject.Find(chaList[j][i]).GetComponent<Info>().exp += 10;
+                            }
+                        }
                     }
 
                     if (unitcount == 0)
