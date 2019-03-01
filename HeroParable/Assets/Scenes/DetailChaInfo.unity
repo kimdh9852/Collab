@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 309366991}
   - component: {fileID: 309366990}
   m_Layer: 0
-  m_Name: ReadDbTest
+  m_Name: DbReadTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -629,7 +629,6 @@ MonoBehaviour:
   ms: 0
   Sp: {fileID: 1743973513}
   Statpoint: 5
-  tempsp: 0
   stats: []
 --- !u!4 &309366991
 Transform:
@@ -2219,7 +2218,7 @@ GameObject:
   - component: {fileID: 842364158}
   - component: {fileID: 842364159}
   m_Layer: 0
-  m_Name: LevelUpTest
+  m_Name: DbLevelUpTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
