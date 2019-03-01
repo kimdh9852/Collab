@@ -825,7 +825,7 @@ public class Ai : Round_Enemy_List
         if (DeadMotion == null)
             return;
         
-        GameObject dm =Instantiate(DeadMotion, new Vector2(transform.position.x,transform.position.y),
+        GameObject dm = Instantiate(DeadMotion, new Vector2(transform.position.x,transform.position.y),
             transform.rotation);
         Destroy(dm, 1.5f); 
     }

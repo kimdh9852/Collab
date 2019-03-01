@@ -16,7 +16,7 @@ public class RelatedMarket : MonoBehaviour {
 
     public TextAsset jsonData;
 
-    int common = 0, uncommon = 0, rare = 0, uniq = 0, legend = 0, total = 0, total_legend = 0;
+    int common = 0, uncommon = 0, rare = 0, uniq = 0, legend = 0, total = 0; //, total_legend = 0;
 
     public void Awake()
     {
