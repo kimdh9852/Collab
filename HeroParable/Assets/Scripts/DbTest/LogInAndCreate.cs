@@ -86,6 +86,7 @@ public class LogInAndCreate : MonoBehaviour
 
         if (www.text == "OK")
         {
+            Debug.Log(www.text);
             GameObject.Find("SceneMover").GetComponent<SceneMove>().GoLobby();
         }
         else
@@ -94,11 +95,11 @@ public class LogInAndCreate : MonoBehaviour
 
             FailedPanel.SetActive(true);
 
-            if (www.text == "ID")
+            if (www.text == "Id")
             {
                 FailedPanel.transform.GetChild(0).GetComponent<Text>().text = "존재하는 ID입니다.";
             }
-            else
+            else if (www.text == "Name")
             {
                 FailedPanel.transform.GetChild(0).GetComponent<Text>().text = "존재하는 Name입니다.";
             }
