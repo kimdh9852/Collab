@@ -517,6 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 212014235}
   - component: {fileID: 212014234}
+  - component: {fileID: 212014236}
   m_Layer: 0
   m_Name: ScriptsManger
   m_TagString: Untagged
@@ -536,11 +537,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410cd239022e08141aaf2e03b2fcdab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EndScripts: 0
-  ScriptText: {fileID: 648442561}
-  ScriptPanel: {fileID: 738891387}
-  Scripts: []
-  NowScripts: 0
+  endScripts: 0
+  scriptPanel: {fileID: 738891387}
+  scriptText: {fileID: 648442561}
+  img_team: {fileID: 0}
+  img_enemy: {fileID: 0}
+  scripts: []
+  sprites: []
+  scriptsCount: 0
+  dialog: {fileID: 0}
 --- !u!4 &212014235
 Transform:
   m_ObjectHideFlags: 0
@@ -555,6 +560,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &212014236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212014233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae280639576e7ac4c87f77eb437aee9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sentences:
+  - "1\uBC88\uCA30\uB300\uD654\uB0B4\uC6A9\uC774\uB2E4\uB2E4\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F"
+  - 222222222222222222222222222222222222222222222222222222222222222222222222
+  - "3\uBC88\uCA30\uB300\uD654\uB0B4\uC6A9\uC774\uB2E4\uB2E4\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F"
+  - 44444444444444444444444444444444444444444444444444444444444444444444444
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dialogueWindows:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &217889464
 GameObject:
   m_ObjectHideFlags: 0

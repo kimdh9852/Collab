@@ -70,7 +70,7 @@ public class Ai : Round_Enemy_List
 
     void Update()
     {
-        EndScript = GameObject.Find("ScriptsManger").GetComponent<TalkScripts>().EndScripts;
+        EndScript = GameObject.Find("ScriptsManger").GetComponent<DialogManager>().endScripts;
 
         if (!EndScript)
         {

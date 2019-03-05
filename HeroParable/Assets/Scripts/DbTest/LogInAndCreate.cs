@@ -78,7 +78,7 @@ public class LogInAndCreate : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("Id", CU_userid);
         form.AddField("PassWord", CU_userpassword);
-        form.AddField("Name", CU_username);
+        //form.AddField("Name", CU_username);
 
         WWW www = new WWW("http://localhost/heroparable/createid.php", form);
 
@@ -99,10 +99,10 @@ public class LogInAndCreate : MonoBehaviour
             {
                 FailedPanel.transform.GetChild(0).GetComponent<Text>().text = "존재하는 ID입니다.";
             }
-            else if (www.text == "Name")
-            {
-                FailedPanel.transform.GetChild(0).GetComponent<Text>().text = "존재하는 Name입니다.";
-            }
+            //else if (www.text == "Name")
+            //{
+            //    FailedPanel.transform.GetChild(0).GetComponent<Text>().text = "존재하는 Name입니다.";
+            //}
         }
     }
 

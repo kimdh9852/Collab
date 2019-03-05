@@ -22,7 +22,7 @@ public class TimeCheck : MonoBehaviour {
 	
 	void Update () {
 
-        EndScript = GameObject.Find("ScriptsManger").GetComponent<TalkScripts>().EndScripts;
+        EndScript = GameObject.Find("ScriptsManger").GetComponent<DialogManager>().endScripts;
 
         if (!EndScript)
         {
