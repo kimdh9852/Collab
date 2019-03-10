@@ -1,9 +1,9 @@
 <?php
 
-	$servername = "localhost";
-	$server_username = "root";
-	$server_password = "";
-	$dbname = "heroparable";
+	$servername = "http://jupitermhl.cafe24.com/410";
+	$server_username = "jupitermhl";
+	$server_password = "whswkfaudgkr813!";
+	$dbname = "jupitermhl";
 
 	$id = $_POST['Id'];
 	$password = $_POST['PassWord'];
