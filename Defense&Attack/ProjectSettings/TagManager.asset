@@ -12,6 +12,8 @@ TagManager:
   - Creep
   - Full
   - Base
+  - DragImg
+  - Slot
   layers:
   - Default
   - TransparentFX

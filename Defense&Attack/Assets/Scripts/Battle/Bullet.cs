@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Transform target;
+    public Transform target;
     public float speed = 30f;
 
     //추후 이펙트가 나오면 추가할 것 
