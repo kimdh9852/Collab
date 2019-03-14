@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UiHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UIHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     public bool isUIHover = false;

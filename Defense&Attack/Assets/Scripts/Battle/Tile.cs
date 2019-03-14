@@ -31,7 +31,7 @@ public class Tile : MonoBehaviour
     //마우스를 클릭하면
     void OnMouseDown()
     {
-        if (GameObject.Find("Canvas").GetComponent<UiHover>().isUIHover)
+        if (GameObject.Find("Canvas").GetComponent<UIHover>().isUIHover)
             return;
 
         btn_state = false;
