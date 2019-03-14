@@ -93,13 +93,5 @@ public class A_U_SettingSlot : MonoBehaviour
             Lock.SetActive(true);
         else
             Lock.SetActive(false);
-
-        //공격 배치 슬롯을 추가 해제하기 위해 구입하는 로직이 들어갈 곳
-        if (Input.GetMouseButton(0))
-        {
-            if (!canUse)
-                canUse = true;
-
-        }
     }
 }

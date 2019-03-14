@@ -6,42 +6,33 @@ using UnityEngine.UI;
 public class TurnManager : MonoBehaviour
 {
     public Text TimeText;
-    public float sec;
+    public float second;
 
+    //흑
     public bool user1turn = true;
+    //백
     public bool user2turn = false;
     public int round;
 
     public void Awake()
     {
-        sec = 10.0f;
+        second = 10.0f;
         round = 1;
-        TimeChek();
+        user1turn = true;
+        user2turn = false;
     }
 
     public void Update()
     {
-        TimeText.text = ((int)sec).ToString();
+        if (TimeText.text == "Wait")
+            return;
+        
+        TimeText.text = ((int)second).ToString();
     }
 
     public void TimeChek()
     {
-        InvokeRepeating("TimeCoroutine", 10f, Time.deltaTime); ;
-    }
-
-    public void TimeCoroutine()
-    {
-        if (sec <= 0.0f)
-        {
-            return;
-        }
-
-        SecondChek();
-    }
-
-    void SecondChek()
-    {
-        sec -= Time.deltaTime;
+        
     }
 
     public void TurnChange()
