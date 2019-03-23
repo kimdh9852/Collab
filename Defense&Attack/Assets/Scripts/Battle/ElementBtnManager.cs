@@ -9,6 +9,8 @@ public class ElementBtnManager : MonoBehaviour
     public GameObject chang;
     // 병사 창
     public GameObject humanchang;
+    // 롤링 창
+    public GameObject RollingChang;
 
     //각각의 버튼이 눌렸는지 확인함
     static public bool Hbtn_1 = false;
@@ -31,6 +33,9 @@ public class ElementBtnManager : MonoBehaviour
     static public int H7 = 0;
     static public int H8 = 0;
 
+    //롤링 창 체크
+    static public bool Rolling_state = false;
+
     // 원소 칸 클릭
     public void OnClickElement()
     {
@@ -41,7 +46,20 @@ public class ElementBtnManager : MonoBehaviour
     {
         humanchang.SetActive(true);
     }
-
+    // 롤링 버튼 클릭
+    public void OnClickRoll()
+    {
+        if (Rolling_state)
+        {
+            RollingChang.SetActive(false);
+            Rolling_state = false;
+        }
+        else
+        {
+            RollingChang.SetActive(true);
+            Rolling_state = true;
+        }
+    }
     // 원소 조합창 나가기 클릭
     public void OnClickEExit()
     {
@@ -99,7 +117,7 @@ public class ElementBtnManager : MonoBehaviour
     //인간창 버튼 "1" 클릭
     public void OnClickH1()
     {
-        if(Hbtn_1 == false)
+        if (Hbtn_1 == false)
         {
             Hbtn_1 = true;
             H1 = 1;
@@ -266,7 +284,8 @@ public class ElementBtnManager : MonoBehaviour
     void Update()
     {
         //Btn_chang -> Tile에서 산 땅에 건물을 지으면 창이 사라짐 Tile.cs 34
-        if(Btn_chang==false)
+
+        if (Btn_chang == false && chang != null)
         {
             chang.SetActive(false);
         }

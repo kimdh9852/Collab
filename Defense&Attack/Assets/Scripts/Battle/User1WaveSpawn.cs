@@ -6,13 +6,13 @@ public class User1WaveSpawn : MonoBehaviour
 {
     public Transform enemyPrefab;
     public Transform spawnPoint;
-    
+
 
     //정보를 모아오기 위한 공격 유닛 세팅 슬롯들
     public GameObject[] AllSlots;
 
     //유닛 보관함
-    public Dictionary<string,GameObject> AllPrefas = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> AllPrefas = new Dictionary<string, GameObject>();
 
     //배치된 유닛들
     public List<string> chaList = new List<string>();
@@ -20,15 +20,15 @@ public class User1WaveSpawn : MonoBehaviour
     private void Start()
     {
         //일단 임의로 Start에 넣어둠
-        SettingCheck();
         //일단 30개의 슬롯을 전부 ""로 비워두고 시작
         for (int i = 0; i < 30; i++)
         {
             chaList.Add("");
         }
+        SettingCheck();
     }
 
-    //제한시간 30초가 다되면 함수가 불러와지도록 하기
+    //제한시간 30초가 다되면 함수가 불러오도록 하기
     public void SettingCheck()
     {
         AllSlots = GameObject.FindGameObjectsWithTag("SettingSlot");
@@ -55,11 +55,11 @@ public class User1WaveSpawn : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
             if (unitname[i] != "")
-                Instantiate( AllPrefas[unitname[i]], spawnPoint.position, spawnPoint.rotation);
+                Instantiate(AllPrefas[unitname[i]], spawnPoint.position, spawnPoint.rotation);
         }
     }
 
-    
+
 
 
     //// 나중에 30초였나? 여튼 그걸로 바꿀 예정

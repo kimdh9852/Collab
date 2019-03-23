@@ -4,16 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - User1Unit
   - User1Area
+  - Creep
+  - NONE
+  - DragImg
   - User2Area
   - User2Unit
-  - NONE
-  - Creep
-  - Full
-  - Base
-  - DragImg
   - SettingSlot
+  - User1Unit
+  - ROOM_ITEM
+  - Full
   layers:
   - Default
   - TransparentFX
